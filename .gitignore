@@ -14,7 +14,9 @@ venv/
 *.dvc
 
 # Datos crudos y datos procesados (si no quieres que Git guarde los datasets grandes)
-data/
+data/**
+!data/**/
+!data/**/*.dvc
 .dvc/
 
 # Pycache
