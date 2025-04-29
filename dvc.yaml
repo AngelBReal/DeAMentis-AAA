@@ -1,0 +1,3 @@
+stages:
+  raw_pipeline:
+    cmd: \
