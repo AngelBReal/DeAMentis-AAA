@@ -1,6 +1,6 @@
 # ------------------- scripts/cli.py -------------------
 import typer
-from src import download, process
+from src.data_scripts import download, process
 
 app = typer.Typer()
 

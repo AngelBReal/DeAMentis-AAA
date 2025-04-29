@@ -1,6 +1,6 @@
 # ------------------- scripts/process.py -------------------
 from config.settings import RAW_DATA_DIR, INTERIM_DATA_DIR
-from .utils import clean_text
+from data_scripts.utils import clean_text
 import pandas as pd
 from pathlib import Path
 from loguru import logger

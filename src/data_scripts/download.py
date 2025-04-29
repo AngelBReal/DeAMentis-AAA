@@ -5,7 +5,7 @@ import pandas as pd
 import requests, re, time
 from tqdm.auto import tqdm
 from loguru import logger
-from .utils import ensure_dir, download_file, clean_text
+from data_scripts.utils import ensure_dir, download_file, clean_text
 from config.settings import RAW_DATA_DIR
 
 def download_omdena(output_path: Path = RAW_DATA_DIR / "omdena/fake_news_latam_omdena_combined.csv"):
