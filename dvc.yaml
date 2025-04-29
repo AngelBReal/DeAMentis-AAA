@@ -1,6 +1,7 @@
 stages:
   raw_pipeline:
-    cmd: python src/data_scripts/cli.py download-all && python src/data_scripts/cli.py process-all
+    cmd: set PYTHONPATH=src && python src/data_scripts/cli.py download-all && python
+      src/data_scripts/cli.py process-all
     deps:
     - src/data_scripts/cli.py
     outs:
