@@ -6,7 +6,7 @@ from pathlib import Path
 # Agrega el directorio src/ al sys.path para permitir importaciones relativas
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-from src.data_scripts import download, process
+from src.data_download import download, process
 import typer
 
 
