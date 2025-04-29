@@ -1,0 +1,20 @@
+schema: '2.0'
+stages:
+  raw_pipeline:
+    cmd: set PYTHONPATH=src && python src/data_scripts/cli.py download-all && python
+      src/data_scripts/cli.py process-all
+    deps:
+    - path: src/data_scripts/cli.py
+      hash: md5
+      md5: 4dc68242e8e9ee6f7709cec8ab45c0b4
+      size: 564
+    outs:
+    - path: data/interim/combined_fakenews_dataset.csv
+      hash: md5
+      md5: fefe5a5a74c79883be4961034dd1a34d
+      size: 7607617
+    - path: data/raw
+      hash: md5
+      md5: b065649415cb17514f76c3deb0fef66b.dir
+      size: 15402873
+      nfiles: 5
