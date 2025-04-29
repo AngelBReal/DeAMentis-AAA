@@ -1,2 +1,2 @@
-[core]
-    autostage = true
+['core']
+    remote = origin
