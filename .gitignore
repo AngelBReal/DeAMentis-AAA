@@ -1,2 +1,30 @@
+# Entorno virtual
 venv/
-/data
+.env/
+*.env
+
+# Configuración de usuario local
+.dvc/config.local
+.dvc/tmp/
+.dvc/cache/
+.dvc/plots/
+.dvc/experiments/
+
+# Archivos generados por DVC
+*.dvc
+
+# Datos crudos y datos procesados (si no quieres que Git guarde los datasets grandes)
+data/
+.dvc/
+
+# Pycache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos de logs
+logs/
+*.log
+
+# Visual Studio Code
+.vscode/
