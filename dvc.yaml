@@ -1,3 +1,8 @@
 stages:
   raw_pipeline:
-    cmd: \
+    cmd: python scripts/cli.py download-all && python scripts/cli.py process-all
+    deps:
+    - scripts/cli.py
+    outs:
+    - data/interim/combined_fakenews_dataset.csv
+    - data/raw
