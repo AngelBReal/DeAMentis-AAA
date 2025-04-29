@@ -1,9 +1,9 @@
 stages:
   raw_pipeline:
-    cmd: set PYTHONPATH=src && python src/data_scripts/cli.py download-all && python
-      src/data_scripts/cli.py process-all
+    cmd: set PYTHONPATH=src && python src/cli.py download-all && python
+      src/cli.py process-all
     deps:
-    - src/data_scripts/cli.py
+    - src/cli.py
     outs:
     - data/interim/combined_fakenews_dataset.csv
     - data/raw

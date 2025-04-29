@@ -17,7 +17,7 @@ venv/
 data/**
 !data/**/
 !data/**/*.dvc
-.dvc/
+
 
 # Pycache
 __pycache__/

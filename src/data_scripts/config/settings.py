@@ -6,4 +6,4 @@ RAW_DATA_DIR = BASE_DIR / "data" / "raw"
 INTERIM_DATA_DIR = BASE_DIR / "data" / "interim"
 
 
-print(BASE_DIR)
+print(RAW_DATA_DIR)

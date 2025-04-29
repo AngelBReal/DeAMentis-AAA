@@ -6,7 +6,7 @@ import requests, re, time
 from tqdm.auto import tqdm
 from loguru import logger
 from data_scripts.utils import ensure_dir, download_file, clean_text
-from config.settings import RAW_DATA_DIR
+from data_scripts.config.settings import RAW_DATA_DIR
 
 def download_omdena(output_path: Path = RAW_DATA_DIR / "omdena/fake_news_latam_omdena_combined.csv"):
     logger.info("Descargando dataset Omdena desde Hugging Face...")
