@@ -6,8 +6,8 @@ stages:
     deps:
     - path: src/cli.py
       hash: md5
-      md5: e4e8a6ed289b04ed1a30f657650b7e70
-      size: 568
+      md5: b12649c2035aa1f9743052f74c1f95f7
+      size: 689
     outs:
     - path: data/interim/combined_fakenews_dataset.csv
       hash: md5

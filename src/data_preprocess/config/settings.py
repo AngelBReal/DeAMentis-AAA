@@ -1,11 +1,10 @@
 from pathlib import Path
 
+# Forza la raíz del proyecto con un path absoluto
 BASE_DIR = Path(__file__).resolve().parents[3]
-
-DATA_DIR = BASE_DIR / "data"
-RAW_DATA_DIR = DATA_DIR / "raw"
-INTERIM_DATA_DIR = DATA_DIR / "interim"
-PROCESSED_DATA_DIR = DATA_DIR / "processed"
+RAW_DATA_DIR = BASE_DIR / "data" / "raw"
+INTERIM_DATA_DIR = BASE_DIR / "data" / "interim"
+PROCESSED_DATA_DIR = BASE_DIR/ "data" / "processed"
 
 
-print(BASE_DIR)
+print(RAW_DATA_DIR)

@@ -7,6 +7,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from src.data_download import download, process
+from src.data_preprocess import preprocessing
 import typer
 
 
@@ -20,6 +21,11 @@ def download_all():
 @app.command()
 def process_all():
     process.merge_datasets()
+
+@app.command()
+def preprocess_all():
+    preprocessing.main()
+    
 
 if __name__ == "__main__":
     app()
