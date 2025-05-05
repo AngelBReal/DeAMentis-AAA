@@ -18,3 +18,20 @@ stages:
       md5: b065649415cb17514f76c3deb0fef66b.dir
       size: 15402873
       nfiles: 5
+  preprocess_pipeline:
+    cmd: python src/cli.py preprocess-all
+    deps:
+    - path: data/interim/combined_fakenews_dataset.csv
+      hash: md5
+      md5: fefe5a5a74c79883be4961034dd1a34d
+      size: 7607617
+    - path: src/cli.py
+      hash: md5
+      md5: b12649c2035aa1f9743052f74c1f95f7
+      size: 689
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: b5b7799571a0cc27078fa93146fd287c.dir
+      size: 21238850
+      nfiles: 3

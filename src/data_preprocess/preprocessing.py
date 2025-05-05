@@ -17,6 +17,8 @@ CLASSICAL_OUTPUT = PROCESSED_DATA_DIR / "classical_models.csv"
 NN_OUTPUT = PROCESSED_DATA_DIR / "neural_networks.csv"
 TRANSFORMERS_OUTPUT = PROCESSED_DATA_DIR / "transformers.csv"
 
+
+
 # ============================
 # GENERAL CLEANING FUNCTIONS
 # ============================
@@ -82,7 +84,10 @@ def preprocess_transformers(df: pd.DataFrame, max_length: int = 512) -> pd.DataF
 def main():
     df = pd.read_csv(INPUT_FILE)
     df = df.drop_duplicates(subset='id').dropna(subset=['label', 'content', 'title'])
-    df['label'] = df['label'].apply(lambda x: 1 if x == 'FAKE' else 0)
+    df['label'] = df['label'].apply(lambda x: 1 if x == 'fake' else 0)
+
+    import os
+    os.makedirs(os.path.dirname(CLASSICAL_OUTPUT), exist_ok=True)
 
     classical_df = preprocess_classical(df)
     classical_df.to_csv(CLASSICAL_OUTPUT, index=False)
@@ -96,4 +101,5 @@ def main():
     print("Preprocessed datasets saved successfully.")
 
 if __name__ == "__main__":
+    
     main()
