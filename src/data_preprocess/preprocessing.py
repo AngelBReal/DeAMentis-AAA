@@ -4,6 +4,7 @@ import re
 from pathlib import Path
 from sklearn.feature_extraction.text import TfidfVectorizer
 from src.data_preprocess.config import settings
+from sklearn.model_selection import train_test_split
 
 # ============================
 # CONFIG PATHS
@@ -24,49 +25,57 @@ TRANSFORMERS_OUTPUT = PROCESSED_DATA_DIR / "transformers.csv"
 # ============================
 def clean_text(text: str) -> str:
     text = str(text).lower()
-    text = re.sub(r"http\\S+", "", text)  # eliminar URLs
-    text = re.sub(r"\\*number\\*", "[NUM]", text)  # normalizar marcadores
-    text = re.sub(r"[\"“”]", "", text)  # quitar comillas
-    text = re.sub(r"[^a-záéíóúñü\\s]", "", text)  # quitar puntuación extraña
-    text = re.sub(r"\\s+", " ", text).strip()  # limpiar espacios múltiples
+    text = re.sub(r'http\S+|www\S+|https\S+', '', text)  # eliminar URLs
+    text = re.sub(r'<.*?>', '', text)  # eliminar etiquetas HTML
+    text = re.sub(r'\d+', '[NUM]', text)  # reemplazar números
+    text = re.sub(r'[^a-záéíóúñü\s]', '', text)  # quitar puntuación extraña
+    text = re.sub(r'\s+', ' ', text).strip()  # limpiar espacios múltiples
     return text
+
 
 # ============================
 # FEATURE ENGINEERING
 # ============================
 def add_text_features(df: pd.DataFrame) -> pd.DataFrame:
-    df['title_word_count'] = df['title'].apply(lambda x: len(str(x).split()))
-    df['content_word_count'] = df['content'].apply(lambda x: len(str(x).split()))
+    df['clean_title'] = df['title'].apply(clean_text)
+    df['clean_content'] = df['content'].apply(clean_text)
+    
+    sensational_words = ['increíble', 'impactante', 'asombroso', 'urgente', 'viral',
+                         'escándalo', 'secreto', 'exclusiva', 'prohibido', 'censurado']
+    
+    df['title_word_count'] = df['clean_title'].apply(lambda x: len(x.split()))
+    df['content_word_count'] = df['clean_content'].apply(lambda x: len(x.split()))
     df['num_uppercase_words'] = df['content'].apply(lambda x: sum(1 for w in str(x).split() if w.isupper()))
     df['has_known_source'] = df['source'].apply(lambda x: 1 if pd.notnull(x) and str(x).strip() != '' else 0)
-    df['fake_word_in_title'] = df['title'].apply(lambda x: 1 if 'fake' in str(x).lower() else 0)
     df['exclam_density'] = df['content'].apply(lambda x: str(x).count('!') / (len(str(x)) + 1))
+    df['title_length'] = df['title'].apply(lambda x: len(str(x)))
+    df['content_length'] = df['content'].apply(lambda x: len(str(x)))
+
+    # Otras features adicionales
+    df['title_exclamation_count'] = df['clean_title'].apply(lambda x: x.count('!'))
+    df['content_exclamation_count'] = df['clean_content'].apply(lambda x: x.count('!'))
+    df['title_question_count'] = df['clean_title'].apply(lambda x: x.count('?'))
+    df['content_question_count'] = df['clean_content'].apply(lambda x: x.count('?'))
+    df['title_sensational_count'] = df['clean_title'].apply(lambda x: sum(1 for w in sensational_words if w in x))
+    df['content_sensational_count'] = df['clean_content'].apply(lambda x: sum(1 for w in sensational_words if w in x))
+    df['title_number_count'] = df['clean_title'].apply(lambda x: len(re.findall(r'\[NUM\]', x)))
+    df['content_number_count'] = df['clean_content'].apply(lambda x: len(re.findall(r'\[NUM\]', x)))
+    df['title_uppercase_ratio'] = df['title'].apply(lambda x: sum(1 for c in str(x) if c.isupper()) / len(str(x)) if len(str(x)) > 0 else 0)
+    
     return df
+
 
 # ============================
 # PREPROCESSING PIPELINES
 # ============================
-def preprocess_classical(df: pd.DataFrame, tfidf_max_features: int = 500) -> pd.DataFrame:
+def preprocess_classical(df: pd.DataFrame) -> None:
     df = add_text_features(df)
-    df['title_length'] = df['title'].apply(lambda x: len(str(x)))
-    df['content_length'] = df['content'].apply(lambda x: len(str(x)))
-    df['combined_text'] = df['title'].fillna('') + ' ' + df['content'].fillna('')
-    tfidf = TfidfVectorizer(max_features=tfidf_max_features)
-    tfidf_matrix = tfidf.fit_transform(df['combined_text'])
-    tfidf_df = pd.DataFrame(tfidf_matrix.toarray(), columns=tfidf.get_feature_names_out())
+    df['combined_text'] = df['clean_title'] + ' ' + df['clean_content']
 
-    # One-hot encode categorical fields
-    df = pd.get_dummies(df, columns=['source', 'dataset_source'], drop_first=True)
+    # Save clean CSV (with all features, no split, no TF-IDF, no train/test separation)
+    df.to_csv(PROCESSED_DATA_DIR / 'classical_models.csv', index=False)
 
-    result_df = pd.concat([
-        df[['label', 'title_length', 'content_length', 'title_word_count', 'content_word_count',
-            'num_uppercase_words', 'has_known_source', 'fake_word_in_title', 'exclam_density']],
-        df.filter(like='source_'),
-        df.filter(like='dataset_source_'),
-        tfidf_df
-    ], axis=1)
-
-    return result_df
+    print(f"Clean classical dataset saved: {df.shape[0]} rows, {df.shape[1]} columns")
 
 def preprocess_neural_networks(df: pd.DataFrame, max_length: int = 1000) -> pd.DataFrame:
     df['combined_text'] = df['title'].fillna('') + ' ' + df['content'].fillna('')
@@ -89,8 +98,7 @@ def main():
     import os
     os.makedirs(os.path.dirname(CLASSICAL_OUTPUT), exist_ok=True)
 
-    classical_df = preprocess_classical(df)
-    classical_df.to_csv(CLASSICAL_OUTPUT, index=False)
+    preprocess_classical(df)
 
     nn_df = preprocess_neural_networks(df)
     nn_df.to_csv(NN_OUTPUT, index=False)

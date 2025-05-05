@@ -11,7 +11,9 @@ stages:
   preprocess_pipeline:
     cmd: python src/cli.py preprocess-all
     deps:
-    - data/interim/combined_fakenews_dataset.csv
-    - src/cli.py
+      - data/interim/combined_fakenews_dataset.csv
+      - src/cli.py
+      - src/data_preprocess/preprocessing.py  # incluye el script actualizado
     outs:
-    - data/processed
+      - data/processed
+
