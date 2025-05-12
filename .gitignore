@@ -13,7 +13,6 @@ venv/
 !.dvc/ 
 # <- EXCEPCIÓN IMPORTANTE
 # Archivos generados por DVC
-*.dvc
 
 # Datos crudos y datos procesados (si no quieres que Git guarde los datasets grandes)
 data/**
