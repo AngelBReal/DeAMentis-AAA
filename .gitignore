@@ -10,6 +10,8 @@ venv/
 .dvc/plots/
 .dvc/experiments/
 
+!.dvc/ 
+# <- EXCEPCIÓN IMPORTANTE
 # Archivos generados por DVC
 *.dvc
 
