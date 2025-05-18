@@ -24,5 +24,5 @@ stages:
       - src/models/final_models/build_final_model.py
     outs:
       - models/final_model/final_voting_model.pkl
-      - models/final_model/tfidf_vectorizer.pkl
-      - models/final_model/selector.pkl
+      - models/final_model/artifacts/tfidf_vectorizer.pkl
+      - models/final_model/artifacts/selector.pkl
