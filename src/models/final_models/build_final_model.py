@@ -116,7 +116,9 @@ joblib.dump(tfidf, SAVE_DIR_ART / "tfidf_vectorizer.pkl")
 joblib.dump(selector, SAVE_DIR_ART / "selector.pkl")
 joblib.dump(encoder, SAVE_DIR_ART / "label_encoder.pkl")
 
-# ============ 8. MLFLOW + REGISTRY ============
+from mlflow.models.signature import infer_signature
+
+# ============ 8. MLFLOW + REGISTRY CON SIGNATURE ============
 with mlflow.start_run(run_name="final_model_voting") as run:
     mlflow.log_params({
         "svm_C": svm_C,
@@ -130,14 +132,23 @@ with mlflow.start_run(run_name="final_model_voting") as run:
     mlflow.set_tag("type", "production")
     mlflow.set_tag("pipeline", "TF-IDF + SelectKBest")
 
-    mlflow.sklearn.log_model(ensemble, artifact_path="final_voting_model")
+    # Inferir signature automáticamente
+    input_example = X_test_sel[0:1]  # Una fila de ejemplo del input final
+    signature = infer_signature(X_test_sel, y_pred)
 
+    # 1. Log del modelo con input_example y signature
+    mlflow.sklearn.log_model(
+        ensemble,
+        artifact_path="final_voting_model",
+        input_example=input_example,
+        signature=signature
+    )
+
+    # 2. Registro en Model Registry
     model_uri = f"runs:/{run.info.run_id}/final_voting_model"
     result = mlflow.register_model(model_uri=model_uri, name="voting_classifier_produccion")
 
     print(f"📌 Modelo registrado como 'voting_classifier_produccion' (versión {result.version})")
-
-print("🚀 Entrenamiento, guardado y registro completo.")
 
 # CLI-compatible
 def main():

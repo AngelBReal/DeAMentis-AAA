@@ -39,3 +39,31 @@ stages:
       md5: e61078046c9287644d98d998d00341ec.dir
       size: 25306221
       nfiles: 3
+  train_model_pipeline:
+    cmd: python src/cli.py build-model
+    deps:
+    - path: data/interim/combined_fakenews_dataset.csv
+      hash: md5
+      md5: fefe5a5a74c79883be4961034dd1a34d
+      size: 7607617
+    - path: src/cli.py
+      hash: md5
+      md5: b3ef937b23d227dce7255cbf6c1dde62
+      size: 870
+    - path: src/models/final_models/build_final_model.py
+      hash: md5
+      md5: 6296631857d2048d4d0d9542028bde71
+      size: 5643
+    outs:
+    - path: models/final_model/artifacts/selector.pkl
+      hash: md5
+      md5: f8e7684b07a2a584a2dc9149e57dbdc1
+      size: 101847
+    - path: models/final_model/artifacts/tfidf_vectorizer.pkl
+      hash: md5
+      md5: c2df5f14666c9dca1bc2e0fa948b20c9
+      size: 243485
+    - path: models/final_model/final_voting_model.pkl
+      hash: md5
+      md5: 5f48f212fd2a7733ba49d7a2552ac75c
+      size: 3537315
