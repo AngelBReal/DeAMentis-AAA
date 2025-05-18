@@ -1,19 +1,28 @@
 stages:
   raw_pipeline:
-    cmd: set PYTHONPATH=src && python src/cli.py download-all && python src/cli.py
-      process-all
+    cmd: set PYTHONPATH=src && python src/cli.py download-all && python src/cli.py process-all
     deps:
-    - src/cli.py
+      - src/cli.py
     outs:
-    - data/interim/combined_fakenews_dataset.csv
-    - data/raw
+      - data/interim/combined_fakenews_dataset.csv
+      - data/raw
 
   preprocess_pipeline:
     cmd: python src/cli.py preprocess-all
     deps:
       - data/interim/combined_fakenews_dataset.csv
       - src/cli.py
-      - src/data_preprocess/preprocessing.py  # incluye el script actualizado
+      - src/data_preprocess/preprocessing.py
     outs:
       - data/processed
 
+  train_model_pipeline: 
+    cmd: python src/cli.py build-model
+    deps:
+      - data/interim/combined_fakenews_dataset.csv  # entrada cruda usada en entrenamiento
+      - src/cli.py
+      - src/models/final_models/build_final_model.py
+    outs:
+      - models/final_model/final_voting_model.pkl
+      - models/final_model/tfidf_vectorizer.pkl
+      - models/final_model/selector.pkl
