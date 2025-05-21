@@ -148,6 +148,13 @@ with mlflow.start_run(run_name="final_model_voting") as run:
     model_uri = f"runs:/{run.info.run_id}/final_voting_model"
     result = mlflow.register_model(model_uri=model_uri, name="voting_classifier_produccion")
 
+    client = MlflowClient()
+    client.set_registered_model_alias(
+        name="voting_classifier_produccion",
+        alias="champion",
+        version=result.version
+    )
+
     print(f"📌 Modelo registrado como 'voting_classifier_produccion' (versión {result.version})")
 
 # CLI-compatible

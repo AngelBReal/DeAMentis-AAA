@@ -18,15 +18,15 @@ ARTIFACTS_PATH = os.path.join(os.path.dirname(__file__), "../../models/artifacts
 VECTORIZER = joblib.load(os.path.join(ARTIFACTS_PATH, "tfidf_vectorizer.pkl"))
 SELECTOR = joblib.load(os.path.join(ARTIFACTS_PATH, "selector.pkl"))
 
-# === 4. Preprocesamiento idéntico al usado durante entrenamiento ===
+# === 3. Preprocesamiento textual ===
 def preprocess_text(text: str) -> str:
     text = text.lower()
-    text = re.sub(r"http\S+|www\S+|https\S+", "", text)  # eliminar URLs
-    text = re.sub(r"[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]", "", text)  # eliminar signos
-    text = re.sub(r"\s+", " ", text).strip()  # espacios extra
+    text = re.sub(r"http\S+|www\S+|https\S+", "", text)
+    text = re.sub(r"[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]", "", text)
+    text = re.sub(r"\s+", " ", text).strip()
     return text
 
-# === 5. Función de predicción final ===
+# === 4. Predicción ===
 def predict_news(title: str, body: str) -> str:
     full_text = title + " " + body
     clean_text = preprocess_text(full_text)
