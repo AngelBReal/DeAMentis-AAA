@@ -155,7 +155,7 @@ with mlflow.start_run(run_name="final_model_voting") as run:
         version=result.version
     )
 
-    print(f"📌 Modelo registrado como 'voting_classifier_produccion' (versión {result.version})")
+    print(f"Modelo registrado como 'voting_classifier_produccion' (versión {result.version})")
 
 # CLI-compatible
 def main():

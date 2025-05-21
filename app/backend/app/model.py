@@ -8,13 +8,13 @@ import pandas as pd
 # === 1. Configurar MLflow (DagsHub como servidor de tracking) ===
 mlflow.set_tracking_uri("https://dagshub.com/AngelBReal/DeAMentis-AAA.mlflow")
 MODEL_NAME = "voting_classifier_produccion"
-MODEL_STAGE = "Production"
+MODEL_ALIAS = "champion"
 
 # === 2. Cargar modelo desde el MLflow Model Registry ===
-MODEL = mlflow.pyfunc.load_model(f"models:/{MODEL_NAME}/{MODEL_STAGE}")
+MODEL = mlflow.pyfunc.load_model(f"models:/{MODEL_NAME}@{MODEL_ALIAS}")
 
 # === 3. Cargar artefactos locales (TF-IDF, selector) ===
-ARTIFACTS_PATH = os.path.join(os.path.dirname(__file__), "../../models/artifacts")
+ARTIFACTS_PATH = os.path.join(os.path.dirname(__file__), "../final_model/artifacts")
 VECTORIZER = joblib.load(os.path.join(ARTIFACTS_PATH, "tfidf_vectorizer.pkl"))
 SELECTOR = joblib.load(os.path.join(ARTIFACTS_PATH, "selector.pkl"))
 
