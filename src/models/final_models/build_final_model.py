@@ -30,7 +30,7 @@ mlflow.set_experiment("Modelo Producción VotingClassifier")
 
 # ============ RUTAS ============
 DATA_PATH = Path("data/interim/combined_fakenews_dataset.csv")
-SAVE_DIR = Path("models/final_model")
+SAVE_DIR = Path("app/backend/final_model")
 SAVE_DIR_ART = SAVE_DIR / "artifacts"
 SAVE_DIR.mkdir(parents=True, exist_ok=True)
 SAVE_DIR_ART.mkdir(parents=True, exist_ok=True)

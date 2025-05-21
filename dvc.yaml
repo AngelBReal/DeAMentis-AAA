@@ -23,6 +23,6 @@ stages:
       - src/cli.py
       - src/models/final_models/build_final_model.py
     outs:
-      - models/final_model/final_voting_model.pkl
-      - models/final_model/artifacts/tfidf_vectorizer.pkl
-      - models/final_model/artifacts/selector.pkl
+      - app/backend/final_model/final_voting_model.pkl
+      - app/backend/final_model/artifacts/tfidf_vectorizer.pkl
+      - app/backend/final_model/artifacts/selector.pkl
