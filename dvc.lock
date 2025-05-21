@@ -52,8 +52,8 @@ stages:
       size: 870
     - path: src/models/final_models/build_final_model.py
       hash: md5
-      md5: d7922091c72e4d3644b480772b298156
-      size: 5648
+      md5: 3c03f8fa60cab33a9404c6021e72477e
+      size: 5831
     outs:
     - path: app/backend/final_model/artifacts/selector.pkl
       hash: md5
@@ -61,9 +61,9 @@ stages:
       size: 101847
     - path: app/backend/final_model/artifacts/tfidf_vectorizer.pkl
       hash: md5
-      md5: 19ce946578ec79011563c29d2bf9d939
+      md5: 59afc73f86ffa977ccd97299a86104bb
       size: 243485
     - path: app/backend/final_model/final_voting_model.pkl
       hash: md5
-      md5: 49e9c8a12fc944f266f527fc2a675016
+      md5: 06b6ed4a428b6c3cfdeb0e91bb6cf595
       size: 3537315
