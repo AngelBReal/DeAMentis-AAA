@@ -10,11 +10,8 @@ app = FastAPI()
 @app.post("/predict", response_model=PredictionResponse)
 def predict(news: NewsInput):
     alerts = analyze_text(news.title + " " + news.body)
-    prediction = predict_news(news.title, news.body)
-
-    # Registrar en MLflow
-    log_inference_to_mlflow(news.title, news.body, prediction, alerts)
-
+    prediction, prediction_raw, prob_fake = predict_news(news.title, news.body)
+    log_inference_to_mlflow(news.title, news.body, prediction, alerts, prediction_raw, prob_fake)
     return {
         "prediction": prediction,
         "alerts": alerts
