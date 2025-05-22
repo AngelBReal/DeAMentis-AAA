@@ -212,9 +212,9 @@ dvc repro
 
 ## Autor
 
-**Angel \[Nombre completo opcional]**
+**Angel Barraza**
 Maestría en Ciencia de Datos – UNISON
-Contacto: \[correo electrónico opcional]
+Contacto: angelbarrazareal@gmail.com
 
 ---
 
