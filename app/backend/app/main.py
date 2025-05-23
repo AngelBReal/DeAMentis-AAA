@@ -11,7 +11,7 @@ app = FastAPI()
 # === HABILITAR CORS ===
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"]  # más flexible pero menos seguro,  # ⚠️ permite solo tu frontend local
+    allow_origins=["*"],  # más flexible pero menos seguro  ⚠️ permite solo tu frontend local
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
