@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+textarea,
+input {
+  font-size: 1rem;
+}
+
+.card-title {
+  font-weight: bold;
+}

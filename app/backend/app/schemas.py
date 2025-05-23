@@ -6,5 +6,8 @@ class NewsInput(BaseModel):
     body: str
 
 class PredictionResponse(BaseModel):
-    prediction: str
+    prediction: str  # sigue existiendo por compatibilidad
     alerts: List[str]
+    risk_level: str  # nuevo campo: "low", "moderate", "high"
+
+
