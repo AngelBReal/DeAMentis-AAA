@@ -41,6 +41,44 @@ El modelo usado es un **VotingClassifier** que combina `SVM` y `XGBoost`, entren
 - **Seguimiento de experimentos**: usando **MLflow**, con registro y trazabilidad completos mediante **DagsHub**.
 
 > La salida del modelo (`prob_fake`) se interpreta a través de **umbrales de riesgo** para mostrar advertencias y nivel de veracidad al usuario (sin clasificaciones binarias directas).
+---
+
+## 📈 Seguimiento y Trazabilidad
+
+- **MLflow** para métricas, artefactos y parámetros
+- **DVC** para gestión y orquestación de datos/modelos
+- **DagsHub** para control de versiones y visualización del historial
+
+---
+
+### MLflow + DagsHub
+
+Todo el flujo de experimentación del proyecto es trazable y está registrado utilizando **MLflow**, con visualización e integración completa en **DagsHub**.
+
+#### Visualización de experimentos
+
+* **MLflow UI local**: Si trabajas localmente, puedes levantar la interfaz con:
+
+  ```bash
+  mlflow ui
+  ```
+
+  Luego navega a [http://localhost:5000](http://localhost:5000) para ver los experimentos.
+
+* **MLflow vía DagsHub**: Los experimentos se visualizan también desde DagsHub, con trazabilidad completa de:
+
+  * Métricas (F1, AUC, Precision, Recall)
+  * Parámetros (hiperparámetros de modelos)
+  * Artefactos (modelos, vectorizadores, selectores)
+  * Comparación de versiones
+
+#### 🔗 Enlaces relevantes
+
+* 📂 **Repositorio en DagsHub**:
+  [https://dagshub.com/TU\_USUARIO/TU\_REPO]([https://dagshub.com/TU_USUARIO/TU_REPO](https://dagshub.com/AngelBReal/DeAMentis-AAA))
+
+* 📈 **Experimentos MLflow en DagsHub**:
+  [https://dagshub.com/TU\_USUARIO/TU\_REPO.mlflow]([https://dagshub.com/TU_USUARIO/TU_REPO.mlflow](https://dagshub.com/AngelBReal/DeAMentis-AAA.mlflow/#/experiments/7?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D))
 
 ---
 
@@ -67,14 +105,6 @@ Una vez desplegada, la aplicación estará disponible públicamente aquí:
   - Muestra una barra de riesgo
   - Lista las advertencias lingüísticas detectadas
   - Indica si el contenido requiere una lectura crítica
-
----
-
-## 📈 Seguimiento y Trazabilidad
-
-- **MLflow** para métricas, artefactos y parámetros
-- **DVC** para gestión y orquestación de datos/modelos
-- **DagsHub** para control de versiones y visualización del historial
 
 ---
 
