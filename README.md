@@ -20,6 +20,12 @@
 - Generación de advertencias interpretables que fomenten el pensamiento crítico.
 - Clasificación automática del contenido por su nivel de veracidad.
 
+### Documentación completa
+
+Para una explicación más detallada sobre el funcionamiento interno, procesos de modelado, uso de MLflow y despliegue, puedes consultar:
+
+🔗 https://angelbreal.github.io/DeAMentis-AAA/
+
 ---
 
 ## Problema que Resuelve
