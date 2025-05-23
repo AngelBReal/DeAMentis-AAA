@@ -26,8 +26,6 @@ data/**
 .mlruns/
 mlruns/
 
-
-models/**/*.pkl
 !models/**/*.dvc
 
 
