@@ -10,19 +10,19 @@
 
 ---
 
-## 🧠 Descripción General
+## Descripción General
 
 **De A Mentis** es una herramienta desarrollada para combatir la desinformación en entornos digitales, con un enfoque educativo e interpretativo. Más allá de clasificar una noticia como *falsa* o *verdadera*, la aplicación busca fortalecer la alfabetización informacional del usuario.
 
 ### Funcionalidades clave:
 
-- 🔍 Detección de señales lingüísticas problemáticas (cifras sin fuente, lenguaje sensacionalista, citas ambiguas).
-- ⚠️ Generación de advertencias interpretables que fomenten el pensamiento crítico.
-- 🧪 Clasificación automática del contenido por su nivel de veracidad.
+- Detección de señales lingüísticas problemáticas (cifras sin fuente, lenguaje sensacionalista, citas ambiguas).
+- Generación de advertencias interpretables que fomenten el pensamiento crítico.
+- Clasificación automática del contenido por su nivel de veracidad.
 
 ---
 
-## 🎯 Problema que Resuelve
+## Problema que Resuelve
 
 El desafío no radica únicamente en detectar contenido falso, sino en brindar herramientas para que cualquier persona pueda analizar críticamente la información. Esta solución se alinea con fines educativos y cívicos, con aplicaciones potenciales en:
 
@@ -32,7 +32,7 @@ El desafío no radica únicamente en detectar contenido falso, sino en brindar h
 
 ---
 
-## ⚙️ TL;DR – Modelado y Backend
+## TL;DR – Modelado y Backend
 
 El modelo usado es un **VotingClassifier** que combina `SVM` y `XGBoost`, entrenado con:
 
@@ -43,7 +43,7 @@ El modelo usado es un **VotingClassifier** que combina `SVM` y `XGBoost`, entren
 > La salida del modelo (`prob_fake`) se interpreta a través de **umbrales de riesgo** para mostrar advertencias y nivel de veracidad al usuario (sin clasificaciones binarias directas).
 ---
 
-## 📈 Seguimiento y Trazabilidad
+## Seguimiento y Trazabilidad
 
 - **MLflow** para métricas, artefactos y parámetros
 - **DVC** para gestión y orquestación de datos/modelos
@@ -74,10 +74,10 @@ Todo el flujo de experimentación del proyecto es trazable y está registrado ut
 
 #### 🔗 Enlaces relevantes
 
-* 📂 **Repositorio en DagsHub**:
+* **Repositorio en DagsHub**:
   [https://dagshub.com/TU\_USUARIO/TU\_REPO]([https://dagshub.com/TU_USUARIO/TU_REPO](https://dagshub.com/AngelBReal/DeAMentis-AAA))
 
-* 📈 **Experimentos MLflow en DagsHub**:
+* **Experimentos MLflow en DagsHub**:
   [https://dagshub.com/TU\_USUARIO/TU\_REPO.mlflow]([https://dagshub.com/TU_USUARIO/TU_REPO.mlflow](https://dagshub.com/AngelBReal/DeAMentis-AAA.mlflow/#/experiments/7?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D))
 
 ---
@@ -134,7 +134,7 @@ requirements.txt
 
 ---
 
-## 💻 Arquitectura y Automatización
+## Arquitectura y Automatización
 
 Este proyecto sigue una arquitectura **modular, reproducible y automatizada**, usando:
 
@@ -150,7 +150,7 @@ Descarga → Preprocesamiento → Entrenamiento del modelo final
 
 ---
 
-## 🖥️ CLI (`src/cli.py`)
+##  CLI (`src/cli.py`)
 
 ```bash
 download-all      # Descarga datasets
@@ -161,7 +161,7 @@ build-model       # Entrena y guarda el modelo final
 
 ---
 
-## 🔁 Pipeline DVC
+## Pipeline DVC
 
 ```yaml
 stages:
