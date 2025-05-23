@@ -9,9 +9,9 @@ services:
         value: 10000
     plan: free
 
-  - type: static  # ← CAMBIA esto de "web" a "static"
+  - type: web
     name: deamentis-frontend
+    env: static
     buildCommand: "npm install && npm run build"
     staticPublishPath: "app/frontend/build"
-    env: node
     plan: free
