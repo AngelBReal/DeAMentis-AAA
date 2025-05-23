@@ -87,7 +87,7 @@ Todo el flujo de experimentación del proyecto es trazable y está registrado ut
 Una vez desplegada, la aplicación estará disponible públicamente aquí:
 
 🔗 **[Enlace a la app desplegada](https://TU_LINK_RENDER_AQUI)**  
-*(Sustituye el enlace una vez desplegada en Render u otro servicio)*
+*(En proceso de deployment)*
 
 ### Backend
 
