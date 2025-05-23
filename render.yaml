@@ -13,5 +13,6 @@ services:
   - type: web
     name: deamentis-frontend
     runtime: static
+    rootDir: app/frontend 
     buildCommand: "npm install && npm run build"
-    staticPublishPath: "app/frontend/build"
+    staticPublishPath: build
