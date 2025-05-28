@@ -92,7 +92,7 @@ Todo el flujo de experimentación del proyecto es trazable y está registrado ut
 
 Una vez desplegada, la aplicación estará disponible públicamente aquí:
 
-🔗 **[Enlace a la app desplegada]([https://TU_LINK_RENDER_AQUI](https://deamentis-frontend.onrender.com/))**  
+🔗 **[Enlace a la app desplegada]([https://TU_LINK_RENDER_AQUI](https://deamentis-frontend.onrender.com/)])**  
 
 ### Backend
 
