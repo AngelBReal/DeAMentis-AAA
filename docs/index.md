@@ -34,23 +34,6 @@ Este proyecto tiene como objetivo proporcionar una herramienta web que integre:
 
 ---
 
-## 📁 Estructura recomendada
-
-Si estás organizando esta documentación en GitHub o GitHub Pages, puedes poner cada archivo en una carpeta `docs/` y activar Pages para navegación estructurada.
-
-```
-
-docs/
-├── index.md
-├── modelo.md
-├── mlflow\.md
-├── despliegue.md
-└── ejemplo.md
-
-```
-
----
-
 ## ✉️ Contacto
 
 **Autor:** Ángel Barraza  
