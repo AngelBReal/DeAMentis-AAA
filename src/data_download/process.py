@@ -60,7 +60,6 @@ def merge_datasets():
     posadas = process_posadas_dataset()
     omdena = process_omdena_dataset()
 
-    # Asegura que ambos DataFrames tengan las mismas columnas
     expected_cols = ['label', 'content', 'title', 'source', 'dataset_source']
 
     posadas = posadas[expected_cols]
